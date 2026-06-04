@@ -97,6 +97,13 @@
     requirements: "{{ odoo_role_odoo_path }}/requirements.txt"
     virtualenv: "{{ odoo_role_odoo_venv_path }}"
 
+- name: Install PDFMiner
+  become: true
+  become_user: "{{ odoo_role_odoo_user }}"
+  pip:
+    name: pdfminer
+  when: odoo_role_odoo_version >= "15.0"
+
 - name: Install nodejs packages
   become: true
   apt:
